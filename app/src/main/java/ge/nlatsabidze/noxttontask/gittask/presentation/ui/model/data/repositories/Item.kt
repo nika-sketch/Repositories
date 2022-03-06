@@ -1,4 +1,6 @@
-package ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data
+package ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories
+
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.Owner
 
 data class Item(
     val allow_forking: Boolean?,
@@ -50,7 +52,6 @@ data class Item(
     val license: License?,
     val merges_url: String?,
     val milestones_url: String?,
-    val mirror_url: Any?,
     val name: String?,
     val node_id: String?,
     val notifications_url: String?,

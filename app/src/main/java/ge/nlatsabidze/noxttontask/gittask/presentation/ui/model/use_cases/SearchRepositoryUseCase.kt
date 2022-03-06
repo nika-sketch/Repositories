@@ -1,6 +1,6 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.use_cases
 
-import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.GithubRepository
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.GithubRepository
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.repository.githubRepoImpl.GitRepository
 import ge.nlatsabidze.noxttontask.gittask.presentation.utils.Resource
 import kotlinx.coroutines.flow.Flow

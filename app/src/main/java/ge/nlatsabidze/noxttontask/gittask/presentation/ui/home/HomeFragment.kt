@@ -1,6 +1,7 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.home
 
 import android.util.Log.d
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,8 +16,14 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
     private val homeViewModel: HomeViewModel by viewModels()
     override fun start() {
         println("sdadasdasasdasdasasdasdas")
+        homeViewModel.searchCase("github")
 
-        homeViewModel.searchCase("walletFluent")
+        binding.search.doAfterTextChanged {
+            homeViewModel.searchCase(it.toString())
+        }
+    }
+
+    override fun observes() {
         viewLifecycleOwner.lifecycleScope.launch {
             homeViewModel.state.collect {
                 d("Sdasdas", it.toString())

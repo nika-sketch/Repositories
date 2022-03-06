@@ -1,6 +1,6 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.repository.githubRepoImpl
 
-import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.GithubRepository
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.GithubRepository
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
