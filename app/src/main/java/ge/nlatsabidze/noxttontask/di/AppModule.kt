@@ -6,7 +6,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.repository.GithubRepository
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.repository.githubRepoImpl.GitRepository
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.repository.githubRepoImpl.GithubRepositoryImpl
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.repository.githubRepoImpl.GithubRepositoryService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -17,7 +19,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofitCurrency(): GithubRepository =
+    fun provideRetrofitCurrency(): GithubRepositoryService =
         Retrofit.Builder().baseUrl("https://api.github.com/")
             .addConverterFactory(
                 MoshiConverterFactory.create(
@@ -25,5 +27,14 @@ object AppModule {
                 )
             )
             .build()
-            .create(GithubRepository::class.java)
+            .create(GithubRepositoryService::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideCurrencyRepository(api: GithubRepositoryService): GitRepository {
+        return GithubRepositoryImpl(api)
+    }
+
+
 }
