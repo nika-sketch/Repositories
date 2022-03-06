@@ -9,13 +9,14 @@
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_git.xml" value="0.1525" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_git_repository.xml" value="0.1525" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_github.xml" value="0.113" />
+        <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.137" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_star.xml" value="0.1" />
-        <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/activity_main.xml" value="0.22074468085106383" />
+        <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/fragment_favourites.xml" value="0.1259259259259259" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
-        <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/repository_item.xml" value="0.25" />
+        <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/repository_item.xml" value="0.33" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33" />
       </map>
     </option>

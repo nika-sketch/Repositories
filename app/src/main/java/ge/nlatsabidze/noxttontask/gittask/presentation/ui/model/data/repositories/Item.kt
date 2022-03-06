@@ -1,7 +1,10 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories
 
+import android.os.Parcelable
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.Owner
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Item(
     val allow_forking: Boolean?,
     val archive_url: String?,
@@ -37,7 +40,6 @@ data class Item(
     val has_pages: Boolean?,
     val has_projects: Boolean?,
     val has_wiki: Boolean?,
-    val homepage: Any?,
     val hooks_url: String?,
     val html_url: String?,
     val id: Int?,
@@ -49,7 +51,6 @@ data class Item(
     val labels_url: String?,
     val language: String?,
     val languages_url: String?,
-    val license: License?,
     val merges_url: String?,
     val milestones_url: String?,
     val name: String?,
@@ -80,4 +81,4 @@ data class Item(
     val visibility: String?,
     val watchers: Int?,
     val watchers_count: Int?
-)
+) : Parcelable

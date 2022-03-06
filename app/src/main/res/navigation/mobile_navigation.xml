@@ -9,12 +9,21 @@
         android:id="@+id/navigation_home"
         android:name="ge.nlatsabidze.noxttontask.gittask.presentation.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_detailRepositoriesFragment"
+            app:destination="@id/detailRepositoriesFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/favourites_dashboard"
         android:name="ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.FavouritesFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_favourites" />
+    <fragment
+        android:id="@+id/detailRepositoriesFragment"
+        android:name="ge.nlatsabidze.noxttontask.gittask.presentation.ui.detailRepositories.DetailRepositoriesFragment"
+        android:label="detail_repositories_fragment"
+        tools:layout="@layout/detail_repositories_fragment" />
 
 </navigation>
