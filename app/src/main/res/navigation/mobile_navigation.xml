@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="ge.nlatsabidze.noxttontask.ui.home.HomeFragment"
+        android:name="ge.nlatsabidze.noxttontask.gittask.presentation.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/favourites_dashboard"
-        android:name="ge.nlatsabidze.noxttontask.ui.favourites.FavouritesFragment"
+        android:name="ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.FavouritesFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_favourites" />
 

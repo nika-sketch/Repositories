@@ -1,4 +1,4 @@
-package ge.nlatsabidze.noxttontask.ui.base
+package ge.nlatsabidze.noxttontask.gittask.presentation.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
