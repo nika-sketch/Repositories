@@ -1,26 +1,21 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data
 
 import android.os.Parcelable
+import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Owner(
-    val avatar_url: String?,
-    val events_url: String?,
-    val followers_url: String?,
-    val following_url: String?,
-    val gists_url: String?,
-    val gravatar_id: String?,
-    val html_url: String?,
-    val id: Int?,
-    val login: String?,
-    val node_id: String?,
-    val organizations_url: String?,
-    val received_events_url: String?,
-    val repos_url: String?,
-    val site_admin: Boolean?,
-    val starred_url: String?,
-    val subscriptions_url: String?,
-    val type: String?,
-    val url: String?
+    @Json(name = "avatar_url")
+    val ownerAvatarUrl: String?,
+    @Json(name = "html_url")
+    val ownerHtmlUrl: String?,
+    @Json(name = "id")
+    val ownerId: Int?,
+    @Json(name = "login")
+    val ownerLogin: String?,
+    @Json(name = "node_id")
+    val ownerNodeId: String?,
+    @Json(name = "url")
+    val ownerUrl: String?
 ) : Parcelable

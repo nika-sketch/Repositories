@@ -1,84 +1,62 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories
 
 import android.os.Parcelable
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.Owner
 import kotlinx.parcelize.Parcelize
 
+@Entity(tableName = "repos")
 @Parcelize
 data class Item(
-    val allow_forking: Boolean?,
-    val archive_url: String?,
-    val archived: Boolean?,
-    val assignees_url: String?,
-    val blobs_url: String?,
-    val branches_url: String?,
-    val clone_url: String?,
-    val collaborators_url: String?,
-    val comments_url: String?,
-    val commits_url: String?,
-    val compare_url: String?,
-    val contents_url: String?,
-    val contributors_url: String?,
-    val created_at: String?,
-    val default_branch: String?,
-    val deployments_url: String?,
+    @Json(name = "id")
+    @PrimaryKey var id: Int?,
+    @Json(name = "created_at")
+    val createdAt: String?,
+    @Json(name = "default_branch")
+    val defaultBranch: String?,
+    @Json(name = "description")
     val description: String?,
-    val disabled: Boolean?,
-    val downloads_url: String?,
-    val events_url: String?,
+    @Json(name = "fork")
     val fork: Boolean?,
+    @Json(name = "forks")
     val forks: Int?,
-    val forks_count: Int?,
-    val forks_url: String?,
-    val full_name: String?,
-    val git_commits_url: String?,
-    val git_refs_url: String?,
-    val git_tags_url: String?,
-    val git_url: String?,
-    val has_downloads: Boolean?,
-    val has_issues: Boolean?,
-    val has_pages: Boolean?,
-    val has_projects: Boolean?,
-    val has_wiki: Boolean?,
-    val hooks_url: String?,
-    val html_url: String?,
-    val id: Int?,
-    val is_template: Boolean?,
-    val issue_comment_url: String?,
-    val issue_events_url: String?,
-    val issues_url: String?,
-    val keys_url: String?,
-    val labels_url: String?,
+    @Json(name = "forks_count")
+    val forksCount: Int?,
+    @Json(name = "full_name")
+    val fullName: String?,
+    @Json(name = "has_pages")
+    val hasPages: Boolean?,
+    @Json(name = "html_url")
+    val htmlUrl: String?,
+    @Json(name = "language")
     val language: String?,
-    val languages_url: String?,
-    val merges_url: String?,
-    val milestones_url: String?,
+    @Json(name = "name")
     val name: String?,
-    val node_id: String?,
-    val notifications_url: String?,
-    val open_issues: Int?,
-    val open_issues_count: Int?,
-    val owner: Owner?,
-    val `private`: Boolean?,
-    val pulls_url: String?,
-    val pushed_at: String?,
-    val releases_url: String?,
-    val score: Double?,
-    val size: Int?,
-    val ssh_url: String?,
-    val stargazers_count: Int?,
-    val stargazers_url: String?,
-    val statuses_url: String?,
-    val subscribers_url: String?,
-    val subscription_url: String?,
-    val svn_url: String?,
-    val tags_url: String?,
-    val teams_url: String?,
-    val topics: List<String>?,
-    val trees_url: String?,
-    val updated_at: String?,
+    @Json(name = "node_id")
+    val nodeId: String?,
+    @Json(name = "open_issues_count")
+    val openIssuesCount: Int?,
+    @Json(name = "owner")
+    @Embedded val owner: Owner?,
+    @Json(name = "pushed_at")
+    val pushedAt: String?,
+    @Json(name = "releases_url")
+    val releasesUrl: String?,
+    @Json(name = "stargazers_count")
+    val stargazersCount: Int?,
+    @Json(name = "stargazers_url")
+    val stargazersUrl: String?,
+    @Json(name = "statuses_url")
+    val statusesUrl: String?,
+    @Json(name = "updated_at")
+    val updatedAt: String?,
+    @Json(name = "url")
     val url: String?,
-    val visibility: String?,
+    @Json(name = "watchers")
     val watchers: Int?,
-    val watchers_count: Int?
+    @Json(name = "watchers_count")
+    val watchersCount: Int?
 ) : Parcelable

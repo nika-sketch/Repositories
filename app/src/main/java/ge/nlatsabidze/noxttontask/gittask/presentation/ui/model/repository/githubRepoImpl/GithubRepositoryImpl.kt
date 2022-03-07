@@ -7,7 +7,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class GithubRepositoryImpl @Inject constructor(
-    private var apiService: GithubRepositoryService
+    private var apiService: GithubRepositoryService,
 ) : GitRepository {
 
     override suspend fun searchRepository(

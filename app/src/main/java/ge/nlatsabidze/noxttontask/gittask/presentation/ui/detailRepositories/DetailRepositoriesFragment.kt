@@ -24,21 +24,21 @@ class DetailRepositoriesFragment : BaseFragmentBinding<DetailRepositoriesFragmen
     private fun setDetailsRepositories() {
         binding.apply {
             with (currentMarketItem) {
-                repoImage.setImage(owner?.avatar_url)
-                tvCreatedAt.text = created_at!!.dateFormatter()
-                tvDefault.text = default_branch
-                tvForks.text = forks_count.toString()
-                tvFullname.text = full_name
-                tvIssues.text = open_issues_count.toString()
-                tvRepoLink.text = html_url
-                tvStars.text = stargazers_count.toString()
+                repoImage.setImage(owner?.ownerAvatarUrl)
+                tvCreatedAt.text = createdAt!!.dateFormatter()
+                tvDefault.text = defaultBranch
+                tvForks.text = forksCount.toString()
+                tvFullname.text = fullName
+                tvIssues.text = openIssuesCount.toString()
+                tvRepoLink.text = htmlUrl
+                tvStars.text = stargazersCount.toString()
             }
         }
     }
 
     private fun openRepositoryLink() {
         binding.tvRepoLink.setOnClickListener {
-            openRepoLink(currentMarketItem.html_url.toString())
+            openRepoLink(currentMarketItem.htmlUrl.toString())
         }
     }
 

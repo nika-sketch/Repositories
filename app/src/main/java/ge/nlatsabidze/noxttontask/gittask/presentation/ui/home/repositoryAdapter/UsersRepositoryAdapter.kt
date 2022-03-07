@@ -23,7 +23,7 @@ class UsersRepositoryAdapter : RecyclerView.Adapter<UsersRepositoryAdapter.Repos
 
         fun onBind() {
             currentItem = repositories[bindingAdapterPosition]
-            binding.tvFullname.text = currentItem.full_name.toString()
+            binding.tvFullname.text = currentItem.fullName.toString()
 
             if (currentItem.language.toString() == "null") {
                 binding.tvLanguage.text = "not specified"
@@ -31,9 +31,9 @@ class UsersRepositoryAdapter : RecyclerView.Adapter<UsersRepositoryAdapter.Repos
                 binding.tvLanguage.text = currentItem.language.toString()
             }
 
-            binding.repoImage.setImage(currentItem.owner?.avatar_url)
-            binding.tvScore.text = currentItem.score.toString()
-            binding.tvVisibility.text = currentItem.visibility.toString()
+            binding.repoImage.setImage(currentItem.owner?.ownerAvatarUrl)
+            binding.tvScore.text = currentItem.watchersCount.toString()
+            binding.tvVisibility.text = currentItem.owner?.ownerLogin.toString()
 
             binding.repoImage.setOnClickListener {
                 onItemClick?.invoke(currentItem)
