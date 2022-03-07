@@ -24,6 +24,10 @@
         android:id="@+id/detailRepositoriesFragment"
         android:name="ge.nlatsabidze.noxttontask.gittask.presentation.ui.detailRepositories.DetailRepositoriesFragment"
         android:label="detail_repositories_fragment"
-        tools:layout="@layout/detail_repositories_fragment" />
+        tools:layout="@layout/detail_repositories_fragment" >
+        <argument
+            android:name="argItem"
+            app:argType="ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item" />
+    </fragment>
 
 </navigation>

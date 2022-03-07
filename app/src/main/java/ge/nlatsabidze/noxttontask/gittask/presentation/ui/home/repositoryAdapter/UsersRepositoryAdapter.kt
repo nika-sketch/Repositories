@@ -35,6 +35,9 @@ class UsersRepositoryAdapter : RecyclerView.Adapter<UsersRepositoryAdapter.Repos
             binding.tvScore.text = currentItem.score.toString()
             binding.tvVisibility.text = currentItem.visibility.toString()
 
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(currentItem)
+            }
         }
     }
 

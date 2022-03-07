@@ -37,7 +37,7 @@ class HomeViewModel @Inject constructor(
                     when (it) {
                         is Resource.Success -> {
                             _loading.value = false
-                            _state.emit(it.data?.items!! as MutableList<Item>)
+                            _state.value = it.data?.items!! as MutableList<Item>
                         }
                         is Resource.Loading -> {
                             _loading.value = true

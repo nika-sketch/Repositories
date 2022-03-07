@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.navigation.fragment.findNavController
 import ge.nlatsabidze.noxttontask.databinding.FragmentHomeBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.base.BaseFragmentBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.home.repositoryAdapter.UsersRepositoryAdapter
@@ -33,6 +34,12 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
             } else {
                 homeViewModel.searchCase(currentRepository)
             }
+        }
+
+        userAdapter.onItemClick = {
+            val action =
+                HomeFragmentDirections.actionNavigationHomeToDetailRepositoriesFragment(it)
+            findNavController().navigate(action)
         }
     }
 
