@@ -5,7 +5,9 @@
       <map>
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.257" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/corner_radius.xml" value="0.1525" />
+        <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_delete.xml" value="0.173" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_favorite.xml" value="0.1525" />
+        <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_filled.xml" value="0.107" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_forks.xml" value="0.1525" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_git.xml" value="0.1525" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_git_repository.xml" value="0.1525" />
@@ -18,7 +20,8 @@
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/drawable/ic_star.xml" value="0.1" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/detail_repositories_fragment.xml" value="0.25" />
-        <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/fragment_favourites.xml" value="0.1259259259259259" />
+        <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/favourites_item.xml" value="0.21" />
+        <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/fragment_favourites.xml" value="0.18" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
         <entry key="..\:/Users/user/NoxttonTask/app/src/main/res/layout/repository_item.xml" value="0.33" />

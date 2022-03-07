@@ -21,7 +21,7 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
     private val homeViewModel: HomeViewModel by viewModels()
 
     companion object {
-        const val currentRepository = "NoxttonTaskRepository"
+        const val currentRepository = "Github"
     }
 
     override fun start() {
@@ -41,6 +41,10 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
             val action =
                 HomeFragmentDirections.actionNavigationHomeToDetailRepositoriesFragment(it)
             findNavController().navigate(action)
+        }
+
+        userAdapter.onFavouriteItemClicked = {
+            homeViewModel.insertRepository(it)
         }
     }
 

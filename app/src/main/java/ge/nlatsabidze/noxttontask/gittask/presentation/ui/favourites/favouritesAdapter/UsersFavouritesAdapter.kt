@@ -1,15 +1,16 @@
-package ge.nlatsabidze.noxttontask.gittask.presentation.ui.home.repositoryAdapter
+package ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.favouritesAdapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ge.nlatsabidze.noxttontask.databinding.FavouritesItemBinding
 import ge.nlatsabidze.noxttontask.databinding.RepositoryItemBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.setImage
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
 
-class UsersRepositoryAdapter : RecyclerView.Adapter<UsersRepositoryAdapter.RepositoryItemViewHolder>() {
+class UsersFavouritesAdapter : RecyclerView.Adapter<UsersFavouritesAdapter.RepositoryItemViewHolder>() {
 
-    var repositories: MutableList<Item> = mutableListOf()
+    var roomRepositories: List<Item> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -18,12 +19,12 @@ class UsersRepositoryAdapter : RecyclerView.Adapter<UsersRepositoryAdapter.Repos
     var onItemClick: ((Item) -> Unit)? = null
     var onFavouriteItemClicked: ((Item) -> Unit)? = null
 
-    inner class RepositoryItemViewHolder(private val binding: RepositoryItemBinding) :
+    inner class RepositoryItemViewHolder(private val binding: FavouritesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private lateinit var currentItem: Item
 
         fun onBind() {
-            currentItem = repositories[bindingAdapterPosition]
+            currentItem = roomRepositories[bindingAdapterPosition]
             binding.tvFullname.text = currentItem.fullName.toString()
 
             if (currentItem.language.toString() == "null") {
@@ -47,12 +48,12 @@ class UsersRepositoryAdapter : RecyclerView.Adapter<UsersRepositoryAdapter.Repos
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryItemViewHolder =
-        RepositoryItemViewHolder(RepositoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        RepositoryItemViewHolder(FavouritesItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: RepositoryItemViewHolder, position: Int) {
         holder.onBind()
     }
 
-    override fun getItemCount(): Int = repositories.size
+    override fun getItemCount(): Int = roomRepositories.size
 
 }

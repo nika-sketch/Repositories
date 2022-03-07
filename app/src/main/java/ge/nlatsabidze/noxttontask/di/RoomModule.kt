@@ -7,7 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.dao.RepositoryDao
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.localDb.LocalDataBase
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.roomRepo.RoomRepository
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.roomRepo.RoomRepositoryImpl
 import javax.inject.Singleton
 
 @Module
@@ -27,4 +30,10 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideUserDao(db: LocalDataBase) = db.userDao()
+
+    @Provides
+    @Singleton
+    fun provideRoomRepository(api: RepositoryDao): RoomRepository {
+        return RoomRepositoryImpl(api)
+    }
 }
