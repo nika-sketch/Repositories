@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:layout_marginLeft="15dp"
     android:layout_marginTop="15dp"
     android:layout_marginRight="15dp"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:ellipsize="end"
-        android:maxLines="1"
+        android:maxLines="2"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/repoImage"
         app:layout_constraintStart_toEndOf="@+id/repoImage"
@@ -35,7 +35,7 @@
         android:id="@+id/tvLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="TextView"
         android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="@+id/repoImage"
@@ -48,6 +48,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/repoImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_favorite" />
@@ -70,6 +71,7 @@
         android:layout_marginEnd="15dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ivFavorite"
         app:layout_constraintTop_toBottomOf="@+id/ivFavorite" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

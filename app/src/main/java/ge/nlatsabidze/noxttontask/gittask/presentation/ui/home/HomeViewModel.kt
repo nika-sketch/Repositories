@@ -18,21 +18,22 @@ class HomeViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    private var job: Job? = null
+    private var searchJob: Job? = null
+    private val delayJob: Long = 350
 
     private val _state = MutableStateFlow<MutableList<Item>>(mutableListOf())
     val state get() = _state.asStateFlow()
 
-    private val _loading = MutableStateFlow<Boolean>(false)
+    private val _loading = MutableStateFlow(false)
     val loading get() = _loading.asStateFlow()
 
-    private val _errorMessage = MutableStateFlow<Boolean>(false)
+    private val _errorMessage = MutableStateFlow(false)
     val errorMessage get() = _errorMessage.asStateFlow()
 
         fun searchCase(query:String) {
-            job?.cancel()
-            job = viewModelScope.launch {
-                delay(250)
+            searchJob?.cancel()
+            searchJob = viewModelScope.launch {
+                delay(delayJob)
                 searchRepositoryUseCase(query).collect {
                     when (it) {
                         is Resource.Success -> {
@@ -40,6 +41,7 @@ class HomeViewModel @Inject constructor(
                             _state.value = it.data?.items!! as MutableList<Item>
                         }
                         is Resource.Loading -> {
+                            _state.value = mutableListOf()
                             _loading.value = true
                         }
                         is Resource.Error -> {

@@ -1,13 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".gittask.presentation.ui.detailRepositories.DetailRepositoriesFragment">
+    android:layout_height="match_parent">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/repoImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_git_repository" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginStart="15dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/repoImage"
+        app:layout_constraintStart_toEndOf="@+id/repoImage"
+        app:layout_constraintTop_toTopOf="@+id/repoImage" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCreatedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="5dp"
+        android:textSize="13sp"
+        android:layout_marginStart="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/repoImage"
+        app:layout_constraintStart_toEndOf="@+id/repoImage"
+        app:layout_constraintTop_toBottomOf="@+id/tvFullname" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivForks"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:src="@drawable/ic_forks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repoImage" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvForks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="TextView"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ivForks"
+        app:layout_constraintStart_toEndOf="@+id/ivForks"
+        app:layout_constraintTop_toTopOf="@+id/ivForks" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivStars"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_star"
+        app:layout_constraintBottom_toBottomOf="@+id/tvForks"
+        app:layout_constraintStart_toEndOf="@+id/tvForks"
+        app:layout_constraintTop_toTopOf="@+id/tvForks" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="TextView"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ivStars"
+        app:layout_constraintStart_toEndOf="@+id/ivStars"
+        app:layout_constraintTop_toTopOf="@+id/ivStars" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivIssues"
+        android:layout_width="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_issues"
+        app:layout_constraintBottom_toBottomOf="@+id/tvStars"
+        app:layout_constraintStart_toEndOf="@+id/tvStars"
+        app:layout_constraintTop_toTopOf="@+id/tvStars" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvIssues"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="TextView"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ivIssues"
+        app:layout_constraintStart_toEndOf="@+id/ivIssues"
+        app:layout_constraintTop_toTopOf="@+id/ivIssues" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDesc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:text="Current repository does not have the description"
+        android:layout_marginStart="15dp"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivStars" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDefaultBranch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:textSize="13sp"
+        android:layout_marginTop="20dp"
+        android:text="Default Branch: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDesc" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDefaultBranch"
+
+        app:layout_constraintStart_toEndOf="@+id/tvDefaultBranch"
+        app:layout_constraintTop_toTopOf="@+id/tvDefaultBranch" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvWantToSeeMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:text="What to see more?"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDefaultBranch" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRepoLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/purple_700"
+        android:textSize="16sp"
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWantToSeeMore" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

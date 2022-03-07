@@ -37,6 +37,7 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
         }
 
         userAdapter.onItemClick = {
+            binding.search.text?.clear()
             val action =
                 HomeFragmentDirections.actionNavigationHomeToDetailRepositoriesFragment(it)
             findNavController().navigate(action)
@@ -52,6 +53,10 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
     }
 
     override fun observes() {
+        if (userAdapter.repositories.size > 0) {
+            binding.pbLoading.visibility = View.GONE
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             homeViewModel.state.collect {
                 if (it.isNotEmpty()) {
