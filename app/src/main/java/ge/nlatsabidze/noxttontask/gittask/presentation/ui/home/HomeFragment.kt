@@ -1,18 +1,24 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.home
 
+import android.graphics.Color
 import android.util.Log.d
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asFlow
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.navigation.fragment.findNavController
+import ge.nlatsabidze.noxttontask.connection.CheckLiveConnection
+import ge.nlatsabidze.noxttontask.connection.CheckStableConnection
 import ge.nlatsabidze.noxttontask.databinding.FragmentHomeBinding
+import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.onSnack
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.base.BaseFragmentBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.home.repositoryAdapter.UsersRepositoryAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -20,26 +26,38 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
     private val userAdapter = UsersRepositoryAdapter()
     private val homeViewModel: HomeViewModel by viewModels()
 
+    @Inject
+    lateinit var checkConnection: CheckLiveConnection
+
+    @Inject
+    lateinit var checkStableConnections: CheckStableConnection
+
     companion object {
         const val currentRepository = "Github"
     }
 
     override fun start() {
+        checkLiveConnectionOnStart()
+
         setUpRecycler()
 
         homeViewModel.searchCase(currentRepository)
+
         binding.search.doAfterTextChanged {
-            if (it.toString().isNotEmpty()) {
-                homeViewModel.searchCase(it.toString())
+            if (checkStableConnections.isOnline(requireContext())) {
+                if (it.toString().isNotEmpty()) {
+                    homeViewModel.searchCase(it.toString())
+                } else {
+                    homeViewModel.searchCase(currentRepository)
+                }
             } else {
-                homeViewModel.searchCase(currentRepository)
+                onSnack(binding.root, "No Internet Connection", Color.RED)
             }
         }
 
         userAdapter.onItemClick = {
             binding.search.text?.clear()
-            val action =
-                HomeFragmentDirections.actionNavigationHomeToDetailRepositoriesFragment(it)
+            val action = HomeFragmentDirections.actionNavigationHomeToDetailRepositoriesFragment(it)
             findNavController().navigate(action)
         }
 
@@ -53,6 +71,18 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             binding.rvItems.adapter = userAdapter
+        }
+    }
+
+    private fun checkLiveConnectionOnStart() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            checkConnection.asFlow().collect {
+                if (!it) {
+                    onSnack(binding.root, "No Internet Connection!", Color.RED)
+                } else {
+                    onSnack(binding.root, "You Are Online!", Color.GREEN)
+                }
+            }
         }
     }
 
