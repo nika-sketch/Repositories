@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ge.nlatsabidze.noxttontask.databinding.FavouritesItemBinding
 import ge.nlatsabidze.noxttontask.databinding.RepositoryItemBinding
+import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.findName
+import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.findRepositoryName
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.setImage
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
 
@@ -24,7 +26,9 @@ class UsersFavouritesAdapter : RecyclerView.Adapter<UsersFavouritesAdapter.Repos
 
         fun onBind() {
             currentItem = roomRepositories[bindingAdapterPosition]
-            binding.tvFullname.text = currentItem.fullName.toString()
+
+            binding.tvFullname.text = findName(currentItem.fullName.toString())
+            binding.tvRepositoryName.text = findRepositoryName(currentItem.fullName.toString())
 
             if (currentItem.language.toString() == "null") {
                 binding.tvLanguage.text = "not specified"

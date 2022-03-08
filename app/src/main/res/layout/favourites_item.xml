@@ -27,7 +27,6 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/repoImage"
         app:layout_constraintStart_toEndOf="@+id/repoImage"
         app:layout_constraintTop_toTopOf="@+id/repoImage" />
 
@@ -73,5 +72,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/ivFavorite"
         app:layout_constraintTop_toBottomOf="@+id/ivFavorite" />
+    <TextView
+        android:id="@+id/tvRepositoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/repoImage"
+        app:layout_constraintStart_toEndOf="@+id/repoImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

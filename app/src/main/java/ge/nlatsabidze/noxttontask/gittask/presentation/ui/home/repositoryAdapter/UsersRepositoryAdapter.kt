@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ge.nlatsabidze.noxttontask.databinding.RepositoryItemBinding
+import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.findName
+import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.findRepositoryName
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.setImage
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
 import javax.inject.Inject
@@ -62,30 +64,5 @@ class UsersRepositoryAdapter @Inject constructor() : RecyclerView.Adapter<UsersR
     }
 
     override fun getItemCount(): Int = repositories.size
-
-    private fun findName(name: String): String {
-
-        var firstHalf = ""
-        for (i in name.indices) {
-            firstHalf += name[i]
-            if (name[i] == '/') {
-                break
-            }
-        }
-        firstHalf = firstHalf.dropLast(1)
-        return firstHalf
-    }
-
-    private fun findRepositoryName(repo: String): String {
-        var index = 0
-        for (i in repo.indices) {
-            if (repo[i] == '/') {
-                index = i
-            }
-        }
-
-
-        return repo.substring(index)
-    }
 
 }

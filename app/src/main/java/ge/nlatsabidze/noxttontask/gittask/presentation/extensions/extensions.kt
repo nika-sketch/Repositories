@@ -46,3 +46,28 @@ fun showDialogError(message: String, context: Context) {
     builder.setPositiveButton("yes") { _: DialogInterface, _: Int -> }
     builder.show()
 }
+
+fun findName(name: String): String {
+
+    var firstHalf = ""
+    for (i in name.indices) {
+        firstHalf += name[i]
+        if (name[i] == '/') {
+            break
+        }
+    }
+    firstHalf = firstHalf.dropLast(1)
+    return firstHalf
+}
+
+fun findRepositoryName(repo: String): String {
+    var index = 0
+    for (i in repo.indices) {
+        if (repo[i] == '/') {
+            index = i
+        }
+    }
+
+
+    return repo.substring(index)
+}
