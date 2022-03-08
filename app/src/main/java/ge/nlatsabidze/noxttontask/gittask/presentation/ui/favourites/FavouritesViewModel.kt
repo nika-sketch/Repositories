@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.use_cases.DeleteRepositoryUseCase
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.use_cases.GetRepositoriesUseCase
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
 import kotlinx.coroutines.Job
@@ -15,7 +16,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavouritesViewModel @Inject constructor(private val getRepositoriesUseCase: GetRepositoriesUseCase) : ViewModel() {
+class FavouritesViewModel @Inject constructor(
+    private val getRepositoriesUseCase: GetRepositoriesUseCase,
+    private val deleteRepositoryUseCase: DeleteRepositoryUseCase
+) : ViewModel() {
 
     private val _state =
         MutableStateFlow<List<Item>>(emptyList())
@@ -34,6 +38,12 @@ class FavouritesViewModel @Inject constructor(private val getRepositoriesUseCase
                 .collectLatest {
                     _state.value = it
                 }
+        }
+    }
+
+    fun deleteCurrentRepository(repo: Item) {
+        viewModelScope.launch {
+            deleteRepositoryUseCase(repo)
         }
     }
 }

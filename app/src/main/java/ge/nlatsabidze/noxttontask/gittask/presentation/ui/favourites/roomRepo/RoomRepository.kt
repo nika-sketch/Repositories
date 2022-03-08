@@ -8,4 +8,5 @@ interface RoomRepository {
     suspend fun getRepoById(id: Int): Item?
     suspend fun insertRepo(repo: Item)
     suspend fun deleteRepo(id: Int)
+    suspend fun deleteRepoFromList(repo: Item)
 }

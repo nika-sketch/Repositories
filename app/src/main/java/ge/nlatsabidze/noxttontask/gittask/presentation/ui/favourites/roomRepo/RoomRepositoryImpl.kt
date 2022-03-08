@@ -23,4 +23,8 @@ class RoomRepositoryImpl @Inject constructor(private val repositoryDao: Reposito
     override suspend fun deleteRepo(id: Int) {
         return repositoryDao.deleteRepoById(id)
     }
+
+    override suspend fun deleteRepoFromList(repo: Item) {
+        return repositoryDao.deleteRepository(repo)
+    }
 }

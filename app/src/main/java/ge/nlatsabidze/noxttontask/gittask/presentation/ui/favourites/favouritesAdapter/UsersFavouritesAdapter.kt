@@ -16,8 +16,7 @@ class UsersFavouritesAdapter : RecyclerView.Adapter<UsersFavouritesAdapter.Repos
             notifyDataSetChanged()
         }
 
-    var onItemClick: ((Item) -> Unit)? = null
-    var onFavouriteItemClicked: ((Item) -> Unit)? = null
+    var onDeleteClicked: ((Item) -> Unit)? = null
 
     inner class RepositoryItemViewHolder(private val binding: FavouritesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -37,12 +36,8 @@ class UsersFavouritesAdapter : RecyclerView.Adapter<UsersFavouritesAdapter.Repos
             binding.tvScore.text = currentItem.watchersCount.toString()
             binding.tvVisibility.text = currentItem.owner?.ownerLogin.toString()
 
-            binding.repoImage.setOnClickListener {
-                onItemClick?.invoke(currentItem)
-            }
-
             binding.ivFavorite.setOnClickListener {
-                onFavouriteItemClicked?.invoke(currentItem)
+                onDeleteClicked?.invoke(currentItem)
             }
         }
     }

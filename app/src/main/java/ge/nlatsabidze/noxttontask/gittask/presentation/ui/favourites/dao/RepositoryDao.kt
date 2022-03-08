@@ -1,9 +1,6 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
 import kotlinx.coroutines.flow.Flow
 
@@ -21,4 +18,7 @@ interface RepositoryDao {
 
     @Query("DELETE FROM repos WHERE id = :id")
     suspend fun deleteRepoById(id: Int)
+
+    @Delete
+    suspend fun deleteRepository(repo: Item)
 }

@@ -22,6 +22,7 @@ class FavouritesFragment : BaseFragmentBinding<FragmentFavouritesBinding>(Fragme
 
     override fun start() {
         initRecyclerView()
+        deleteItemFromLocalDataBase()
     }
 
     override fun observes() {
@@ -39,6 +40,12 @@ class FavouritesFragment : BaseFragmentBinding<FragmentFavouritesBinding>(Fragme
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             binding.rvFavourite.adapter = userAdapter
+        }
+    }
+
+    private fun deleteItemFromLocalDataBase() {
+        userAdapter.onDeleteClicked = {
+            favouritesViewModel.deleteCurrentRepository(it)
         }
     }
 }
