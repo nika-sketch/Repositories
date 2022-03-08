@@ -1,7 +1,7 @@
 # GithubApi
 
-walletFluent is a daily application that will provide you with information on cryptocurrency and non-crypto currency, will count the amounts, if the relevant currency is specified. At the same time, it is used to store information of performed transactions, account balance, and personal information.
-It is possible to see cryptocurrency details, understand current and past prices, and calculate the non-cryptocurrency conversion.
+Github api- small application where you can track and ge detailed infromation about different repositories, also you can save your favourite repositories to the coressponding page
+without using internet connection.
 # Features
 
 - [MVVM Design Pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) -Model-View-ViewModel (MVVM) is a structural design pattern that separates objects into three distinct groups: Models hold application data. They're usually structs or simple classes. Views display visual elements and controls on the screen
