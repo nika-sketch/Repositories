@@ -25,19 +25,15 @@ class FavouritesViewModel @Inject constructor(
         MutableStateFlow<List<Item>>(emptyList())
     val state get() = _state.asStateFlow()
 
-    private var job: Job? = null
-
     init {
-        getReposFromRoom()
+        getRepositoriesFromRoom()
     }
 
-    private fun getReposFromRoom() {
-        job?.cancel()
-        job = viewModelScope.launch {
-            getRepositoriesUseCase()
-                .collectLatest {
+    private fun getRepositoriesFromRoom() {
+        viewModelScope.launch {
+            getRepositoriesUseCase().collectLatest {
                     _state.value = it
-                }
+            }
         }
     }
 
