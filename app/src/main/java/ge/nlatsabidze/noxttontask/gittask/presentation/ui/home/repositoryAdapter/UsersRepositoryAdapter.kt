@@ -25,7 +25,8 @@ class UsersRepositoryAdapter @Inject constructor() : RecyclerView.Adapter<UsersR
 
         fun onBind() {
             currentItem = repositories[bindingAdapterPosition]
-            binding.tvFullname.text = currentItem.fullName.toString()
+            binding.tvFullname.text = findName(currentItem.fullName.toString())
+            binding.tvRepositoryName.text = findRepositoryName(currentItem.fullName.toString())
 
             if (currentItem.language.toString() == "null") {
                 binding.tvLanguage.text = "not specified"
@@ -61,5 +62,30 @@ class UsersRepositoryAdapter @Inject constructor() : RecyclerView.Adapter<UsersR
     }
 
     override fun getItemCount(): Int = repositories.size
+
+    private fun findName(name: String): String {
+
+        var firstHalf = ""
+        for (i in name.indices) {
+            firstHalf += name[i]
+            if (name[i] == '/') {
+                break
+            }
+        }
+        firstHalf = firstHalf.dropLast(1)
+        return firstHalf
+    }
+
+    private fun findRepositoryName(repo: String): String {
+        var index = 0
+        for (i in repo.indices) {
+            if (repo[i] == '/') {
+                index = i
+            }
+        }
+
+
+        return repo.substring(index)
+    }
 
 }
