@@ -1,3 +1,9 @@
+# ScreenShots
+![Screenshot_10](https://user-images.githubusercontent.com/55893091/157302912-45116804-d11a-4dd5-8346-1e4f465dc7e2.png)
+![Screenshot_11](https://user-images.githubusercontent.com/55893091/157302924-1c614f3a-e750-4682-8e72-34c4bba0c193.png)
+
+
+
 # GithubApi
 
 Github api- small application where you can track and ge detailed infromation about different repositories, also you can save your favourite repositories to the coressponding page
