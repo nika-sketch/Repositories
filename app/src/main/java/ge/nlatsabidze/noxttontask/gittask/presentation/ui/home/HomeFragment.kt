@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.asFlow
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -97,7 +99,10 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.state.collect {
+            homeViewModel.state.flowWithLifecycle(
+                viewLifecycleOwner.lifecycle,
+                Lifecycle.State.STARTED
+            ).collect {
                 if (it.isNotEmpty()) {
                     binding.pbLoading.visibility = View.GONE
                 }
@@ -106,7 +111,10 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.loading.collect {
+            homeViewModel.loading.flowWithLifecycle(
+                viewLifecycleOwner.lifecycle,
+                Lifecycle.State.STARTED
+            ).collect {
                 if (it) {
                     binding.pbLoading.visibility = View.VISIBLE
                 } else {
@@ -116,7 +124,10 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.errorMessage.collect {
+            homeViewModel.errorMessage.flowWithLifecycle(
+                viewLifecycleOwner.lifecycle,
+                Lifecycle.State.STARTED
+            ).collect {
                 if (it) {
                     binding.pbLoading.visibility = View.GONE
                     userAdapter.repositories.clear()

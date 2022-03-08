@@ -3,6 +3,7 @@ package ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +16,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FavouritesFragment : BaseFragmentBinding<FragmentFavouritesBinding>(FragmentFavouritesBinding::inflate) {
+class FavouritesFragment :
+    BaseFragmentBinding<FragmentFavouritesBinding>(FragmentFavouritesBinding::inflate) {
 
     private val userAdapter = UsersFavouritesAdapter()
     private val favouritesViewModel: FavouritesViewModel by viewModels()
@@ -27,10 +29,11 @@ class FavouritesFragment : BaseFragmentBinding<FragmentFavouritesBinding>(Fragme
 
     override fun observes() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                favouritesViewModel.state.collectLatest {
-                    userAdapter.roomRepositories = it
-                }
+            favouritesViewModel.state.flowWithLifecycle(
+                viewLifecycleOwner.lifecycle,
+                Lifecycle.State.STARTED
+            ).collectLatest {
+                userAdapter.roomRepositories = it
             }
         }
     }
