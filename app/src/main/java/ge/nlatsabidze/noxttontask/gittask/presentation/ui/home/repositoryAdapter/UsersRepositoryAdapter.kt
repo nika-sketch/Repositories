@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import ge.nlatsabidze.noxttontask.databinding.RepositoryItemBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.setImage
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
+import javax.inject.Inject
 
-class UsersRepositoryAdapter : RecyclerView.Adapter<UsersRepositoryAdapter.RepositoryItemViewHolder>() {
+class UsersRepositoryAdapter @Inject constructor() : RecyclerView.Adapter<UsersRepositoryAdapter.RepositoryItemViewHolder>() {
 
     var repositories: MutableList<Item> = mutableListOf()
         set(value) {
@@ -47,7 +48,13 @@ class UsersRepositoryAdapter : RecyclerView.Adapter<UsersRepositoryAdapter.Repos
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryItemViewHolder =
-        RepositoryItemViewHolder(RepositoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        RepositoryItemViewHolder(
+            RepositoryItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     override fun onBindViewHolder(holder: RepositoryItemViewHolder, position: Int) {
         holder.onBind()

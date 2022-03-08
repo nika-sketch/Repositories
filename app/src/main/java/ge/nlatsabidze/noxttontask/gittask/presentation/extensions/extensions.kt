@@ -1,11 +1,14 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.extensions
 
+import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Color
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import ge.nlatsabidze.noxttontask.R
@@ -35,4 +38,11 @@ fun onSnack(view: View, text: String, color: Int) {
     params.gravity = Gravity.TOP
     textView.textSize = 13f
     snackbar.show()
+}
+
+fun showDialogError(message: String, context: Context) {
+    val builder = AlertDialog.Builder(context)
+    builder.setMessage(message)
+    builder.setPositiveButton("yes") { _: DialogInterface, _: Int -> }
+    builder.show()
 }

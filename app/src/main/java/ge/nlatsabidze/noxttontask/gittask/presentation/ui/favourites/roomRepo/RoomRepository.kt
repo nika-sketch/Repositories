@@ -4,9 +4,8 @@ import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositorie
 import kotlinx.coroutines.flow.Flow
 
 interface RoomRepository {
-    fun getRepos(): Flow<List<Item>>
-    suspend fun getRepoById(id: Int): Item?
-    suspend fun insertRepo(repo: Item)
-//    suspend fun deleteRepo(id: Int)
+    fun getRepositories(): Flow<List<Item>>
+    suspend fun getRepositoriesById(id: Int): Item?
+    suspend fun insertRepository(repo: Item)
     suspend fun deleteRepoFromList(repo: Item)
 }

@@ -8,7 +8,7 @@ class InsertCurrentRepositoryUseCase @Inject constructor(
     private val roomRepository: RoomRepository
 ) {
     suspend operator fun invoke(repository: Item) {
-        roomRepository.insertRepo(repository)
+        roomRepository.insertRepository(repository)
     }
 
 }

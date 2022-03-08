@@ -9,6 +9,6 @@ class GetRepositoryByIdUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(id: Int): Item? {
-        return roomRepository.getRepoById(id)
+        return roomRepository.getRepositoriesById(id)
     }
 }

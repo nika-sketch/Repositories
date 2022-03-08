@@ -5,24 +5,22 @@ import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositorie
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class RoomRepositoryImpl @Inject constructor(private val repositoryDao: RepositoryDao):
+class RoomRepositoryImpl @Inject constructor(
+    private val repositoryDao: RepositoryDao
+) :
     RoomRepository {
 
-    override fun getRepos(): Flow<List<Item>> {
-        return repositoryDao.getRepos()
+    override fun getRepositories(): Flow<List<Item>> {
+        return repositoryDao.getReposisotires()
     }
 
-    override suspend fun getRepoById(id: Int): Item? {
-        return repositoryDao.getRepoById(id)
+    override suspend fun getRepositoriesById(id: Int): Item? {
+        return repositoryDao.getRepositoryById(id)
     }
 
-    override suspend fun insertRepo(repo: Item) {
-        return repositoryDao.insertRepo(repo)
+    override suspend fun insertRepository(repo: Item) {
+        return repositoryDao.insertRepository(repo)
     }
-
-//    override suspend fun deleteRepo(id: Int) {
-//        return repositoryDao.deleteRepoById(id)
-//    }
 
     override suspend fun deleteRepoFromList(repo: Item) {
         return repositoryDao.deleteRepository(repo)

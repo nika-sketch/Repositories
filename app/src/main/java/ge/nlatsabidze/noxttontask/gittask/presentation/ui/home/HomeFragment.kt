@@ -3,6 +3,7 @@ package ge.nlatsabidze.noxttontask.gittask.presentation.ui.home
 import android.graphics.Color
 import android.util.Log.d
 import android.view.View
+import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asFlow
@@ -14,6 +15,7 @@ import ge.nlatsabidze.noxttontask.connection.CheckLiveConnection
 import ge.nlatsabidze.noxttontask.connection.CheckStableConnection
 import ge.nlatsabidze.noxttontask.databinding.FragmentHomeBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.onSnack
+import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.showDialogError
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.base.BaseFragmentBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.home.repositoryAdapter.UsersRepositoryAdapter
 import kotlinx.coroutines.flow.collect
@@ -23,8 +25,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
-    private val userAdapter = UsersRepositoryAdapter()
     private val homeViewModel: HomeViewModel by viewModels()
+
+    @Inject
+    lateinit var userAdapter: UsersRepositoryAdapter
 
     @Inject
     lateinit var checkConnection: CheckLiveConnection
@@ -63,6 +67,7 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
 
         userAdapter.onFavouriteItemClicked = {
             homeViewModel.insertRepository(it)
+            showDialogError("Repository Saved to Favourites", requireContext())
         }
     }
 

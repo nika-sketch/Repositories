@@ -12,7 +12,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Item(
     @Json(name = "id")
-    @PrimaryKey var id: Int?,
+    @PrimaryKey
+    var id: Int?,
     @Json(name = "created_at")
     val createdAt: String?,
     @Json(name = "default_branch")
@@ -40,7 +41,8 @@ data class Item(
     @Json(name = "open_issues_count")
     val openIssuesCount: Int?,
     @Json(name = "owner")
-    @Embedded val owner: Owner?,
+    @Embedded
+    val owner: Owner?,
     @Json(name = "pushed_at")
     val pushedAt: String?,
     @Json(name = "releases_url")
