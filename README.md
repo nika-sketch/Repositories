@@ -1,6 +1,6 @@
 # ScreenShots
-![Screenshot_10](https://user-images.githubusercontent.com/55893091/157302912-45116804-d11a-4dd5-8346-1e4f465dc7e2.png)
-![Screenshot_11](https://user-images.githubusercontent.com/55893091/157302924-1c614f3a-e750-4682-8e72-34c4bba0c193.png)
+![Screenshot_13](https://user-images.githubusercontent.com/55893091/157328982-0ea2dbac-dc4c-4455-af30-cbbe34750b8a.png)
+![Screenshot_14](https://user-images.githubusercontent.com/55893091/157329001-3aeef1f1-065b-4c72-a03b-cfcc95b59539.png)
 ![Screenshot_12](https://user-images.githubusercontent.com/55893091/157303121-b60b0d35-5ab0-4a0f-bc2b-c53866f96ca0.png)
 
 
