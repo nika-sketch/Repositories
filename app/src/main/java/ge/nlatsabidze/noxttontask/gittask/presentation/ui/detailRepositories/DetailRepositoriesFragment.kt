@@ -2,21 +2,33 @@ package ge.nlatsabidze.noxttontask.gittask.presentation.ui.detailRepositories
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log.d
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
+import ge.nlatsabidze.noxttontask.R
 import ge.nlatsabidze.noxttontask.databinding.DetailRepositoriesFragmentBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.dateFormatter
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.setImage
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.base.BaseFragmentBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DetailRepositoriesFragment : BaseFragmentBinding<DetailRepositoriesFragmentBinding>(DetailRepositoriesFragmentBinding::inflate) {
 
     private lateinit var currentMarketItem: Item
 
     private val args: DetailRepositoriesFragmentArgs by navArgs()
+    private val detailRepositoriesViewModel: DetailRepositoriesViewModel by viewModels()
 
     override fun start() {
         currentMarketItem = args.argItem
+
+        detailRepositoriesViewModel.checkRepository(currentMarketItem)
         setDetailsRepositories()
         openRepositoryLink()
     }
@@ -48,4 +60,13 @@ class DetailRepositoriesFragment : BaseFragmentBinding<DetailRepositoriesFragmen
         startActivity(intent)
     }
 
+    override fun observes() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            detailRepositoriesViewModel.checkRepositoryExists.collect {
+                if (it) {
+                    binding.ivFavouriteRepo.setImageResource(R.drawable.ic_filled)
+                }
+            }
+        }
+    }
 }

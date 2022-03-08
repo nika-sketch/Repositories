@@ -8,7 +8,7 @@ import com.squareup.moshi.Json
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.Owner
 import kotlinx.parcelize.Parcelize
 
-@Entity(tableName = "repos")
+@Entity(tableName = "repositories")
 @Parcelize
 data class Item(
     @Json(name = "id")

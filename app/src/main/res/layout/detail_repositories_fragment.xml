@@ -19,11 +19,11 @@
         android:id="@+id/tvFullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_marginStart="15dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="TextView"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/repoImage"
         app:layout_constraintStart_toEndOf="@+id/repoImage"
         app:layout_constraintTop_toTopOf="@+id/repoImage" />
@@ -32,10 +32,10 @@
         android:id="@+id/tvCreatedAt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginTop="5dp"
-        android:textSize="13sp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        android:textSize="13sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/repoImage"
         app:layout_constraintStart_toEndOf="@+id/repoImage"
@@ -45,8 +45,8 @@
         android:id="@+id/ivForks"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:src="@drawable/ic_forks"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/repoImage" />
@@ -86,8 +86,8 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivIssues"
         android:layout_width="50dp"
-        android:layout_marginStart="10dp"
         android:layout_height="50dp"
+        android:layout_marginStart="10dp"
         android:src="@drawable/ic_issues"
         app:layout_constraintBottom_toBottomOf="@+id/tvStars"
         app:layout_constraintStart_toEndOf="@+id/tvStars"
@@ -108,10 +108,10 @@
         android:id="@+id/tvDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current repository does not have the description"
         android:layout_marginStart="15dp"
-        android:textSize="20sp"
         android:layout_marginTop="15dp"
+        android:text="Current repository does not have the description"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivStars" />
@@ -121,9 +121,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:textSize="13sp"
         android:layout_marginTop="20dp"
         android:text="Default Branch: "
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDesc" />
 
@@ -144,26 +144,36 @@
         android:id="@+id/tvWantToSeeMore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="13sp"
-        android:text="What to see more?"
         android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
+        android:text="What to see more?"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDefaultBranch" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvRepoLink"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:text="TextView"
         android:textColor="@color/purple_700"
         android:textSize="16sp"
         android:textStyle="bold"
-
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWantToSeeMore" />
+
+    <ImageView
+        android:id="@+id/ivFavouriteRepo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRepoLink"
+        app:srcCompat="@drawable/ic_favorite" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
