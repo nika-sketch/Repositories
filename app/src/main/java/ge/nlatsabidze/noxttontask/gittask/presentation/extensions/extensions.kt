@@ -62,12 +62,13 @@ fun findName(name: String): String {
 
 fun findRepositoryName(repo: String): String {
     var index = 0
-    for (i in repo.indices) {
-        if (repo[i] == '/') {
+    var current = repo
+    for (i in current.indices) {
+        if (current[i] == '/') {
             index = i
         }
     }
+    current = current.drop(1)
 
-
-    return repo.substring(index)
+    return current.substring(index)
 }
