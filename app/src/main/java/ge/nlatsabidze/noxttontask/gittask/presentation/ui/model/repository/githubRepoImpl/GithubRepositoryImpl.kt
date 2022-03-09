@@ -11,9 +11,10 @@ class GithubRepositoryImpl @Inject constructor(
 ) : GitRepository {
 
     override suspend fun searchRepository(
-        query: String
+        query: String,
+        perPage: Int
     ): Resource<GithubRepository> = handleResponse {
-        apiService.searchForRepository(query)
+        apiService.searchForRepository(query,perPage)
     }
 
 

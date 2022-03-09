@@ -9,6 +9,7 @@ interface GithubRepositoryService {
 
     @GET("search/repositories")
     suspend fun searchForRepository(
-        @Query("q") query: String
+        @Query("q") query: String,
+        @Query("per_page") perPage: Int,
     ): Response<GithubRepository>
 }

@@ -47,14 +47,14 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
 
         setUpRecycler()
 
-        homeViewModel.searchCase(currentRepository)
+        homeViewModel.searchCase(currentRepository, 100)
 
         binding.search.doAfterTextChanged {
             if (checkStableConnections.isOnline(requireContext())) {
                 if (it.toString().isNotEmpty()) {
-                    homeViewModel.searchCase(it.toString())
+                    homeViewModel.searchCase(it.toString(), 100)
                 } else {
-                    homeViewModel.searchCase(currentRepository)
+                    homeViewModel.searchCase(currentRepository, 100)
                 }
             } else {
                 onSnack(binding.root, "No Internet Connection", Color.RED)

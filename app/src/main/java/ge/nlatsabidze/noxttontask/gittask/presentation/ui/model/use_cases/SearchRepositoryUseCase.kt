@@ -12,8 +12,9 @@ class SearchRepositoryUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(
         query: String,
+        perPage: Int
     ): Flow<Resource<GithubRepository>> = flow {
         emit(Resource.Loading())
-        emit(githubrepository.searchRepository(query))
+        emit(githubrepository.searchRepository(query, perPage))
     }
 }

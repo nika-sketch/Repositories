@@ -32,11 +32,11 @@ class HomeViewModel @Inject constructor(
     private val _errorMessage = MutableStateFlow(false)
     val errorMessage get() = _errorMessage.asStateFlow()
 
-    fun searchCase(query: String) {
+    fun searchCase(query: String, perPage: Int) {
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(delayJob)
-            searchRepositoryUseCase(query).collect {
+            searchRepositoryUseCase(query, perPage).collect {
                 when (it) {
                     is Resource.Success -> {
                         _loading.value = false

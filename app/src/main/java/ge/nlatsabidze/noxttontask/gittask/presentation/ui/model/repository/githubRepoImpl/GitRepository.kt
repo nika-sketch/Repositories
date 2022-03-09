@@ -7,6 +7,7 @@ import ge.nlatsabidze.noxttontask.gittask.presentation.utils.Resource
 interface GitRepository {
 
     suspend fun searchRepository(
-        query: String
+        query: String,
+        perPage: Int
     ): Resource<GithubRepository>
 }
