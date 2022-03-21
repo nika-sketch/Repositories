@@ -22,9 +22,7 @@ class FavouritesFragment :
     }
 
     override fun observes() {
-        collectFlow(favouritesViewModel.state) {
-            userAdapter.roomRepositories = it
-        }
+        collectRoomRepositories()
     }
 
     private fun initRecyclerView() {
@@ -38,6 +36,12 @@ class FavouritesFragment :
         userAdapter.onDeleteClicked = {
             favouritesViewModel.deleteCurrentRepository(it)
             showDialogError("Repository removed from favourites", requireContext())
+        }
+    }
+
+    private fun collectRoomRepositories() {
+        collectFlow(favouritesViewModel.state) {
+            userAdapter.roomRepositories = it
         }
     }
 }

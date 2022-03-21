@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.setImage
 import ge.nlatsabidze.noxttontask.databinding.DetailRepositoriesFragmentBinding
+import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.collectFlow
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.dateFormatter
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.base.BaseFragmentBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
@@ -25,10 +26,14 @@ class DetailRepositoriesFragment : BaseFragmentBinding<DetailRepositoriesFragmen
 
     override fun start() {
         currentMarketItem = args.argItem
-
         detailRepositoriesViewModel.checkRepository(currentMarketItem)
+
         setDetailsRepositories()
         openRepositoryLink()
+    }
+
+    override fun observes() {
+        checkIfRepositoryExists()
     }
 
     private fun setDetailsRepositories() {
@@ -58,12 +63,10 @@ class DetailRepositoriesFragment : BaseFragmentBinding<DetailRepositoriesFragmen
         startActivity(intent)
     }
 
-    override fun observes() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            detailRepositoriesViewModel.checkRepositoryExists.collect {
-                if (it) {
-                    binding.ivFavouriteRepo.setImageResource(R.drawable.ic_filled)
-                }
+    private fun checkIfRepositoryExists() {
+        collectFlow(detailRepositoriesViewModel.checkRepositoryExists) {
+            if (it) {
+                binding.ivFavouriteRepo.setImageResource(R.drawable.ic_filled)
             }
         }
     }

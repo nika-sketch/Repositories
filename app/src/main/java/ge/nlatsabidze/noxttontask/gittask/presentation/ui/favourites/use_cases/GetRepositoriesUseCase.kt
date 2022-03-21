@@ -8,7 +8,7 @@ import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.roomRepo.Ro
 class GetRepositoriesUseCase @Inject constructor(
     private val roomRepository: RoomRepository
 ) {
-    suspend operator fun invoke(): Flow<List<Item>> {
+    operator fun invoke(): Flow<List<Item>> {
         return roomRepository.getRepositories()
     }
 

@@ -37,6 +37,7 @@
         android:id="@+id/rvItems"
         android:layout_width="407dp"
         android:layout_height="614dp"
+        android:layoutAnimation="@anim/recycler_animation"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

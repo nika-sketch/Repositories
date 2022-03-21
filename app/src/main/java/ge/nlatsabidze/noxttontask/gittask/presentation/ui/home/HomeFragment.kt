@@ -44,29 +44,18 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
 
 
     override fun start() {
-        checkLiveConnectionOnStart()
         setUpRecycler()
+        checkLiveConnectionOnStart()
 
-        binding.search.doAfterTextChanged {
-            if (checkStableConnections.isOnline(requireContext())) {
-                if (it.toString().isNotEmpty()) {
-                    homeViewModel.searchCase(it.toString(), 100)
-                }
-            } else {
-                onSnack(binding.root, "No Internet Connection", Color.RED)
-            }
-        }
+        callSearchCase()
 
-        userAdapter.onItemClick = {
-            binding.search.text?.clear()
-            val action = HomeFragmentDirections.actionNavigationHomeToDetailRepositoriesFragment(it)
-            findNavController().navigate(action)
-        }
+        onRepositoryItemClicked()
+        insertFavouriteRepository()
+    }
 
-        userAdapter.onFavouriteItemClicked = {
-            homeViewModel.insertRepository(it)
-            showDialogError("Repository Saved to Favourites", requireContext())
-        }
+    override fun observes() {
+        checkForListSize()
+        collectGithubRepositoryState()
     }
 
     private fun setUpRecycler() {
@@ -86,14 +75,43 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
         }
     }
 
-    override fun observes() {
+
+    private fun callSearchCase() {
+        binding.search.doAfterTextChanged {
+            if (checkStableConnections.isOnline(requireContext())) {
+                if (it.toString().isNotEmpty()) {
+                    homeViewModel.searchCase(it.toString(), 100)
+                }
+            } else {
+                onSnack(binding.root, "No Internet Connection", Color.RED)
+            }
+        }
+    }
+
+    private fun onRepositoryItemClicked() {
+        userAdapter.onItemClick = {
+            binding.search.text?.clear()
+            val action = HomeFragmentDirections.actionNavigationHomeToDetailRepositoriesFragment(it)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun insertFavouriteRepository() {
+        userAdapter.onFavouriteItemClicked = {
+            homeViewModel.insertRepository(it)
+            showDialogError("Repository Saved to Favourites", requireContext())
+        }
+    }
+
+    private fun checkForListSize() {
         if (userAdapter.repositories.size > 0) {
             binding.pbLoading.visibility = View.GONE
         }
+    }
 
-
-        collectFlow(homeViewModel.stateResult) {
-            when (it) {
+    private fun collectGithubRepositoryState() {
+        collectFlow(homeViewModel.stateResult) { githubState ->
+            when (githubState) {
                 is Resource.Loading -> {
                     binding.pbLoading.visibility = View.VISIBLE
                     userAdapter.repositories = mutableListOf()
@@ -101,7 +119,8 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
 
                 is Resource.Success -> {
                     binding.pbLoading.visibility = View.INVISIBLE
-                    userAdapter.repositories = it.data?.items as MutableList<Item>
+                    userAdapter.repositories = githubState.data?.items as MutableList<Item>
+                    binding.rvItems.startLayoutAnimation()
                 }
 
                 is Resource.Error -> {
@@ -112,4 +131,6 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
             }
         }
     }
+
+
 }
