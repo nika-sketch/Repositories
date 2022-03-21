@@ -1,7 +1,7 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.roomRepo
 
-import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
 import kotlinx.coroutines.flow.Flow
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
 
 interface RoomRepository {
     fun getRepositories(): Flow<List<Item>>

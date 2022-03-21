@@ -1,16 +1,14 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.detailRepositories
 
+import javax.inject.Inject
+import kotlinx.coroutines.launch
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.use_cases.DeleteRepositoryUseCase
-import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.use_cases.GetRepositoriesUseCase
-import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.use_cases.GetRepositoryByIdUseCase
-import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import kotlinx.coroutines.flow.MutableStateFlow
+import dagger.hilt.android.lifecycle.HiltViewModel
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.use_cases.GetRepositoryByIdUseCase
 
 @HiltViewModel
 class DetailRepositoriesViewModel @Inject constructor(

@@ -1,22 +1,29 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.extensions
 
-import android.content.Context
-import android.content.DialogInterface
-import android.graphics.Color
-import android.view.Gravity
+import java.util.*
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.ImageView
+import android.view.Gravity
+import android.graphics.Color
+import android.content.Context
 import android.widget.TextView
+import android.widget.ImageView
+import android.widget.FrameLayout
+import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import ge.nlatsabidze.noxttontask.R
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.util.*
 
 
-fun ImageView.setImage(url:String?) {
+fun ImageView.setImage(url: String?) {
     Glide.with(context).load(url).placeholder(R.drawable.ic_git_repository).into(this)
 }
 
@@ -32,7 +39,8 @@ fun onSnack(view: View, text: String, color: Int) {
     snackbar.setActionTextColor(Color.BLUE)
     snackbar.view.setBackgroundColor(color)
     val view: View = snackbar.getView()
-    val textView = snackbar.view.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+    val textView =
+        snackbar.view.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
     val params = view.layoutParams as FrameLayout.LayoutParams
     view.layoutParams = params
     params.gravity = Gravity.TOP
@@ -71,4 +79,13 @@ fun findRepositoryName(repo: String): String {
     current = current.drop(1)
 
     return current.substring(index)
+}
+
+fun <T> Fragment.collectFlow(flow: Flow<T>, onCollect: suspend (T) -> Unit) {
+    viewLifecycleOwner.lifecycleScope.launch {
+        flow.flowWithLifecycle(
+            viewLifecycleOwner.lifecycle,
+            Lifecycle.State.STARTED
+        ).collectLatest(onCollect)
+    }
 }

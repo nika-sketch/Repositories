@@ -7,6 +7,5 @@ import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositorie
 
 @Database(entities = [Item::class], version = 1)
 abstract class LocalDataBase : RoomDatabase() {
-
     abstract fun userDao(): RepositoryDao
 }

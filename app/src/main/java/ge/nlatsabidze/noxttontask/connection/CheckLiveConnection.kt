@@ -1,15 +1,15 @@
 package ge.nlatsabidze.noxttontask.connection
 
-import android.content.Context
-import android.content.Context.CONNECTIVITY_SERVICE
-import android.net.ConnectivityManager
+import javax.inject.Inject
 import android.net.Network
-import android.net.NetworkCapabilities
-import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
+import android.content.Context
 import android.net.NetworkRequest
 import androidx.lifecycle.LiveData
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.content.Context.CONNECTIVITY_SERVICE
 import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
+import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
 
 class CheckLiveConnection @Inject constructor(@ApplicationContext context: Context) :
     LiveData<Boolean>() {

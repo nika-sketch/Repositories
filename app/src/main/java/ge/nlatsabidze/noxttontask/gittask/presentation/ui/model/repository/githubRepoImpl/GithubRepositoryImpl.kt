@@ -1,10 +1,10 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.repository.githubRepoImpl
 
 
-import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.GithubRepository
-import ge.nlatsabidze.noxttontask.gittask.presentation.utils.Resource
-import retrofit2.Response
 import javax.inject.Inject
+import retrofit2.Response
+import ge.nlatsabidze.noxttontask.gittask.presentation.utils.Resource
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.GithubRepository
 
 class GithubRepositoryImpl @Inject constructor(
     private var apiService: GithubRepositoryService,

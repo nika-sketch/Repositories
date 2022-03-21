@@ -1,8 +1,8 @@
 package ge.nlatsabidze.noxttontask.gittask.presentation.ui.favourites.dao
 
 import androidx.room.*
-import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
 import kotlinx.coroutines.flow.Flow
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
 
 @Dao
 interface RepositoryDao {

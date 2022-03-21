@@ -16,11 +16,15 @@ import androidx.navigation.fragment.findNavController
 import ge.nlatsabidze.noxttontask.connection.CheckLiveConnection
 import ge.nlatsabidze.noxttontask.connection.CheckStableConnection
 import ge.nlatsabidze.noxttontask.databinding.FragmentHomeBinding
+import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.collectFlow
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.onSnack
 import ge.nlatsabidze.noxttontask.gittask.presentation.extensions.showDialogError
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.base.BaseFragmentBinding
 import ge.nlatsabidze.noxttontask.gittask.presentation.ui.home.repositoryAdapter.UsersRepositoryAdapter
+import ge.nlatsabidze.noxttontask.gittask.presentation.ui.model.data.repositories.Item
+import ge.nlatsabidze.noxttontask.gittask.presentation.utils.Resource
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -38,23 +42,15 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
     @Inject
     lateinit var checkStableConnections: CheckStableConnection
 
-    companion object {
-        const val currentRepository = "Github"
-    }
 
     override fun start() {
         checkLiveConnectionOnStart()
-
         setUpRecycler()
-
-        homeViewModel.searchCase(currentRepository, 100)
 
         binding.search.doAfterTextChanged {
             if (checkStableConnections.isOnline(requireContext())) {
                 if (it.toString().isNotEmpty()) {
                     homeViewModel.searchCase(it.toString(), 100)
-                } else {
-                    homeViewModel.searchCase(currentRepository, 100)
                 }
             } else {
                 onSnack(binding.root, "No Internet Connection", Color.RED)
@@ -75,7 +71,6 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
 
     private fun setUpRecycler() {
         binding.rvItems.apply {
-            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             binding.rvItems.adapter = userAdapter
         }
@@ -86,8 +81,6 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
             checkConnection.asFlow().collect {
                 if (!it) {
                     onSnack(binding.root, "No Internet Connection!", Color.RED)
-                } else {
-                    onSnack(binding.root, "You Are Online!", Color.GREEN)
                 }
             }
         }
@@ -98,37 +91,20 @@ class HomeFragment : BaseFragmentBinding<FragmentHomeBinding>(FragmentHomeBindin
             binding.pbLoading.visibility = View.GONE
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.state.flowWithLifecycle(
-                viewLifecycleOwner.lifecycle,
-                Lifecycle.State.STARTED
-            ).collect {
-                if (it.isNotEmpty()) {
-                    binding.pbLoading.visibility = View.GONE
-                }
-                userAdapter.repositories = it
-            }
-        }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.loading.flowWithLifecycle(
-                viewLifecycleOwner.lifecycle,
-                Lifecycle.State.STARTED
-            ).collect {
-                if (it) {
+        collectFlow(homeViewModel.stateResult) {
+            when (it) {
+                is Resource.Loading -> {
                     binding.pbLoading.visibility = View.VISIBLE
-                } else {
-                    binding.pbLoading.visibility = View.INVISIBLE
+                    userAdapter.repositories = mutableListOf()
                 }
-            }
-        }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.errorMessage.flowWithLifecycle(
-                viewLifecycleOwner.lifecycle,
-                Lifecycle.State.STARTED
-            ).collect {
-                if (it) {
+                is Resource.Success -> {
+                    binding.pbLoading.visibility = View.INVISIBLE
+                    userAdapter.repositories = it.data?.items as MutableList<Item>
+                }
+
+                is Resource.Error -> {
                     binding.pbLoading.visibility = View.GONE
                     userAdapter.repositories.clear()
                     userAdapter.notifyDataSetChanged()
